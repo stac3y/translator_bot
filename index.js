@@ -3,15 +3,17 @@ const TLS = require('telegraf-session-local');
 require('custom-env').env('staging');
 const Scene = require('telegraf/scenes/base');
 
-const translateFunc = require('./functions/translate')
-
-// region commands
+//commands
 const startCommand = require('./commands/start.js');
 const helpCommand = require('./commands/help.js');
 
 //scenes
 const fromScene = require('./scenes/from')
 const toScene = require('./scenes/to')
+
+//handlers
+const message = require('./handlers/message')
+const inline_query = require('./handlers/inline_query')
 
 const init = async (bot)=>{
     //stage, scenes
@@ -29,10 +31,13 @@ const init = async (bot)=>{
     bot.command('to', ctx => {
         ctx.scene.enter('toScene');
     });
+
+    //handlers
     bot.command('lang', ctx => {
        ctx.reply(`${ctx.session.from} - ${ctx.session.to}`)
     });
-    bot.on('text', translateFunc());
+    bot.on('message', message());
+    bot.on('inline_query', inline_query());
     return bot;
 }
 
