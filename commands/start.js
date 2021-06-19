@@ -1,5 +1,5 @@
 module.exports = () => async (ctx) => {
     ctx.reply(`
 Hello! Please set /from language and /to language. 
-The default language is 'en'`)
+The default translate language is 'en'.`)
 }
