@@ -1,0 +1,4 @@
+.env.staging
+# Project exclude paths
+/node_modules/
+/data
