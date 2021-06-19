@@ -4,7 +4,7 @@ module.exports = () => async (ctx) => {
 /to - Set translate language
 Also you can use this bot in inline mode
 
-This bot uses ISO-639-1 standard.
+This bot uses ISO-631 standard.
 For example:
 en - English, ru - Russian, es - Spanish`)
 }

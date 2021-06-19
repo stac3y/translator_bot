@@ -1,9 +1,9 @@
 const {Telegraf, Stage, session} = require('telegraf');
 const TLS = require('telegraf-session-local');
-
 require('custom-env').env('staging');
 const Scene = require('telegraf/scenes/base');
 
+const translateFunc = require('./functions/translate')
 
 // region commands
 const startCommand = require('./commands/start.js');
@@ -32,6 +32,7 @@ const init = async (bot)=>{
     bot.command('lang', ctx => {
        ctx.reply(`${ctx.session.from} - ${ctx.session.to}`)
     });
+    bot.on('text', translateFunc());
     return bot;
 }
 

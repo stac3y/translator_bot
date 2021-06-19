@@ -16,6 +16,7 @@
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
+    "axios": "^0.21.1",
     "telegraf-session-local": "^2.1.0"
   }
 }
