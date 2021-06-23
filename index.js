@@ -45,7 +45,7 @@ const init = async (bot)=>{
 init(new Telegraf(process.env.BOT_TOKEN)).then( (bot) =>{
     // await bot.launch();
     bot.telegram.setWebhook(`${process.env.URL}bot${process.env.BOT_TOKEN}`).then(()=>{
-        bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, 5000)
+        bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, process.env.PORT)
             console.log(`Launched ${new Date()}`)
     });
 });
