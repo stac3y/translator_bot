@@ -18,5 +18,8 @@
   "devDependencies": {
     "axios": "^0.21.1",
     "telegraf-session-local": "^2.1.0"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
