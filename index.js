@@ -1,5 +1,5 @@
 const {Telegraf, Stage, session} = require('telegraf');
-const TLS = require('telegraf-session-local');
+// const TLS = require('telegraf-session-local');
 require('custom-env').env('staging');
 const Scene = require('telegraf/scenes/base');
 
@@ -19,7 +19,8 @@ const init = async (bot)=>{
     //stage, scenes
     const stage = new Stage([fromScene, toScene]);
     //middlewares
-    bot.use(new TLS({database: 'data/session.json'}).middleware());
+    // bot.use(new TLS({database: 'data/session.json'}).middleware());
+    bot.use(session());
     bot.use(stage.middleware());
 
     //commands
