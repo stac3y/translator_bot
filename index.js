@@ -42,9 +42,13 @@ const init = async (bot)=>{
     return bot;
 }
 
-init(new Telegraf(process.env.BOT_TOKEN)).then(async (bot) =>{
-    await bot.launch();
-    console.log(`Launched ${new Date()}`)
-})
+init(new Telegraf(process.env.BOT_TOKEN)).then( (bot) =>{
+    // await bot.launch();
+    bot.setWebhook(`${process.env.URL}/bot${process.env.BOT_TOKEN}`).then(()=>{
+        bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, 5000).then(()=>{
+            console.log(`Launched ${new Date()}`)
+        });
+    });
+});
 
 module.exports = init;
