@@ -32,22 +32,32 @@ const init = async (bot)=>{
     bot.command('to', ctx => {
         ctx.scene.enter('toScene');
     });
-
-    //handlers
     bot.command('lang', ctx => {
        ctx.reply(`${ctx.session.from} - ${ctx.session.to}`)
     });
+    bot.command('env', ctx => {
+        ctx.reply(`ENV is ${process.env.NODE_ENV}`)
+    })
+    //handlers
     bot.on('message', message());
     bot.on('inline_query', inline_query());
     return bot;
 }
 
 init(new Telegraf(process.env.BOT_TOKEN)).then( (bot) =>{
-    // await bot.launch();
-    bot.telegram.setWebhook(`${process.env.URL}bot${process.env.BOT_TOKEN}`).then(()=>{
-        bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, process.env.PORT)
+    if (process.env.NODE_ENV === 'production'){
+        bot.telegram.setWebhook(`${process.env.URL}bot${process.env.BOT_TOKEN}`).then(()=>{
+            bot.startWebhook(`/bot${process.env.BOT_TOKEN}`, null, process.env.PORT)
             console.log(`Launched ${new Date()}`)
-    });
+        });
+    }
+    else
+    {
+        bot.launch().then(()=>{
+            console.log(`Launched ${new Date()}`)
+        })
+    }
+
 });
 
 module.exports = init;
