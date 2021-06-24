@@ -35,9 +35,6 @@ const init = async (bot)=>{
     bot.command('lang', ctx => {
        ctx.reply(`${ctx.session.from} - ${ctx.session.to}`)
     });
-    bot.command('env', ctx => {
-        ctx.reply(`ENV is ${process.env.NODE_ENV}`)
-    })
     //handlers
     bot.on('message', message());
     bot.on('inline_query', inline_query());
